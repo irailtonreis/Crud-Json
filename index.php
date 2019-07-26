@@ -1,9 +1,9 @@
 <?php
 include("header.php");
 require_once("functions.php");
-global $meuJasonArray;
 
 
+// Capturando os dados do Formulário
 if ($_REQUEST) {
 	$nome = $_REQUEST["nome"];
 	$sobrenome = $_REQUEST["sobrenome"];
@@ -22,6 +22,7 @@ if ($_REQUEST) {
 	$pais = $_REQUEST["pais"];
 	$profissao = $_REQUEST["profissao"];
 
+// Criando um Array associativo para inserir no Json 
 	$novoAluno = [
 		"nome" => $nome,
 		"sobrenome" => $sobrenome,
@@ -41,25 +42,22 @@ if ($_REQUEST) {
 		"profissao" => $profissao
 	];
 
+	// Chamando a Função que vai inserir no arquivo Json 
 	$alunoRegistrado = cadastrarAluno($novoAluno);
 
 }
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
-	<link rel="stylesheet" href="style.css">
-</head>
 
 <body>
 	<article>
+		<!-- Retornar mensagen de cadastro realizado-->
+		<?php global $alunoRegistrado; if($alunoRegistrado == true):?>
+		<div class="col-12 alert alert-success m-auto" role="alert">
+			<h2>Cadastro realizado com sucesso</h2>
+		</div>
+		<?php endif; ?>
 		<form action="index.php" method="post" enctype="multipart/form-data">
 			<h4>Formulário de Cadastro de Aluno</h4>
 			<small>Preencha todos os campos corretamente. O 'x' vermelho só sumirá quando o campo for preenchido corretamente.</small>

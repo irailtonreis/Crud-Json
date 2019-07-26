@@ -3,7 +3,6 @@
 $meuArquivoJson = 'alunos.json';
 $meuJson = file_get_contents($meuArquivoJson);
 $meuJsonArray = json_decode($meuJson, true);
-$meuJsonObjeto = json_decode($meuJson);
 // Criando o registro no json
 function cadastrarAluno($novoAluno){
     global $meuArquivoJson;
@@ -11,6 +10,8 @@ function cadastrarAluno($novoAluno){
     array_push($meuJsonArray["alunos"], $novoAluno);
     $jsonAlunos = json_encode($meuJsonArray);
     $alunoRegistrado = file_put_contents($meuArquivoJson, $jsonAlunos);
+
+    return $alunoRegistrado;
     
 }
 

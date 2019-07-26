@@ -1,14 +1,8 @@
 <?php
-include("header.php");
-require_once("functions.php");
-
-
+    include("header.php");
+    require_once("functions.php");
+    // Mostrar os alunos cadastrados
     $exibirAluno =  listarAlunos($meuJsonArray);
-	if($_REQUEST && $_REQUEST["nomeBuscado"] != null){
-	listarAluno($meuJsonArray, $_REQUEST["nomeBuscado"]);
-}
-
-
 ?>
 <section id="creat">
     <form id="formBuscarAluno" action="read.php" method="post" enctype="multipart/form-date">
@@ -17,6 +11,11 @@ require_once("functions.php");
         <input type="submit" name="buscarAluno" class="enviar" value="Buscar">
     </form>
     <pre id="resultadoBuscarAluno">
+        <?php
+            if($_REQUEST && $_REQUEST["nomeBuscado"] != null){
+            listarAluno($meuJsonArray, $_REQUEST["nomeBuscado"]);
+            }
+        ?>
     </pre>
 </section>
 
